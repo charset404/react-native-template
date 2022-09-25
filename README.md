@@ -1,2 +1,18 @@
 # react-native-template
-Project folders template for React Native
+
+ Project folders template for React Native
+
+# Folders structure
+
+**Project Name**
+- **src**
+	-  ***@types***
+		-  png
+		- svg
+	 - ***assets***
+		 -  png
+		 - svg
+	 - ***global***
+	     - theme
+	 - ***components***
+	 - ***screens***
