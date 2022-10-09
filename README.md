@@ -31,5 +31,28 @@
 
 # Essentials Image Library:
 
- - **Name:** React-native-svg <pre>`yarn add react-native-svg`</pre>
+ - **Name:** React-native-svg <pre>`expo install react-native-svg`</pre>
 	 - **Dependency:** Svg-transformer <pre>`yarn add --dev react-native-svg-transformer`</pre>
+	 **For Expo SDK v41.0.0 or newer**</br>
+	 	For the svg to work, replace your *metro.config.js* with the one below.
+		```javascript
+		const { getDefaultConfig } = require("expo/metro-config");
+
+		module.exports = (() => {
+		  const config = getDefaultConfig(__dirname);
+
+		  const { transformer, resolver } = config;
+
+		  config.transformer = {
+		    ...transformer,
+		    babelTransformerPath: require.resolve("react-native-svg-transformer"),
+		  };
+		  config.resolver = {
+		    ...resolver,
+		    assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
+		    sourceExts: [...resolver.sourceExts, "svg"],
+		  };
+
+		  return config;
+		})();
+		```
