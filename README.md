@@ -67,6 +67,11 @@
 	    ```javascript 
 	    import * as SplashScreen from 'expo-splash-screen';
 	    ```
+	- **In *App.js/.tsx* add preventAutoHideAsync up export default App()**
+	```javascript 
+	// Keep the splash screen visible while we search for resources
+	SplashScreen.preventAutoHideAsync(); // add it up export default function App() {}
+	```
 	- **In *App.js/.tsx* add this code bellow export default function**
 	```javascript
 	const [fontsLoaded] = useFonts({
