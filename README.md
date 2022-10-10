@@ -1,4 +1,5 @@
 
+
 # react-native-template
 
  Project folders template and library for ****React Native****
@@ -56,3 +57,42 @@
 		  return config;
 		})();
 		```
+		
+# Custom fonts:
+- **Name:** *open-sans*(change this name in the command to match your font) <pre>`expo install expo-font @expo-google-fonts/open-sans`</pre>
+	- **Install the expo-splash-screen**
+			<pre>`expo install expo-splash-screen`</pre>
+
+	- **In *App.js/.tsx*, import the SplashScreen**
+	    ```javascript 
+	    import * as SplashScreen from 'expo-splash-screen';
+	    ```
+	- **In *App.js/.tsx* add this code bellow export default function**
+	```javascript
+	const [fontsLoaded] = useFonts({
+	    OpenSans_400Regular,
+	    OpenSans_600SemiBold
+	});
+
+	const onLayoutRootView = useCallback(async () => {
+	    if (fontsLoaded) {
+		await new Promise(resolve => setTimeout(resolve, 2000)); // Delete it or add your time to load.
+
+		await SplashScreen.hideAsync();
+	    }
+	}, [fontsLoaded]);
+
+	if (!fontsLoaded) {
+	    return null;
+	}
+	```
+
+	**App.tsx/.js, in return add onLayoutRootView**
+	```javascript 
+	return (
+	    onLayoutRootView(), // add this
+	    <ThemeProvider theme={theme}>
+		<Home />
+	    </ThemeProvider>
+	)
+	```
